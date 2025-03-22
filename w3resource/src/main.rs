@@ -1,7 +1,7 @@
 #![allow(non_snake_case)]
 
 // Import the rusqlite crate
-use rusqlite::{Result}; // For database operations and result handling
+use rusqlite::Result; // For database operations and result handling
 
 use db;
 
