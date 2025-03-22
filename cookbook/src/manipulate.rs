@@ -43,6 +43,7 @@ fn main() -> Result<()> {
 
     for cat in cats {
         println!("Found cat {:?}", cat);
+        println!("{}", cat.unwrap().name)
     }
 
     Ok(())
