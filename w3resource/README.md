@@ -35,3 +35,9 @@ hbarta@olive:~/Programming/Rust/Fun_with_rusqlite/w3resource$
 ```
 
 Next is to modify this to match my needs/plans. I deleted the `id` field and now see the usefulness of it when I need to update a row. Adding it back.
+
+## Done
+
+And what I want. The key for unpacking the structure is in <https://doc.rust-lang.org/rust-by-example/custom_types/structs.html?search=non_snake_case> (search for "Destructure the point using a `let` binding".) Eureka!
+
+Now... Can I return a collection of `struct Conf` from a function that queries the database? I hope so.

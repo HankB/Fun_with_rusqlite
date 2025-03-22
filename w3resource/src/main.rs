@@ -1,5 +1,8 @@
+#![allow(non_snake_case)]
+
 // Import the rusqlite crate
 use rusqlite::{params, Connection, Result}; // For database operations and result handling
+
 
 fn main() -> Result<()> {
     // Create a database and table
@@ -71,7 +74,7 @@ fn query_config() -> Result<()> {
         //println!("{:?}", conf?.clone());
         //let id = conf.unwrap().id;
         //let MAC = conf.unwrap().MAC;
-        let Conf { id: id, MAC: MAC, config: conf } = conf?;
+        let Conf { id, MAC, config: conf } = conf?;
         //println!("id:{}, MAC:{}, ", id, MAC)
         println!("id:{} MAC:{} config:{}", id, MAC, conf);
     }
