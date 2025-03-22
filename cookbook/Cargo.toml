@@ -5,3 +5,11 @@ edition = "2024"
 
 [dependencies]
 rusqlite = { version = "0.34.0", features = ["bundled"] }
+
+[[bin]]
+name = "init"
+path = "src/init.rs"
+
+[[bin]]
+name = "manipulate"
+path = "src/manipulate.rs"
