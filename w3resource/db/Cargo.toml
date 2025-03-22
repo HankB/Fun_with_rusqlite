@@ -1,12 +1,8 @@
 [package]
-name = "w3resource"
+name = "db"
 version = "0.1.0"
 edition = "2024"
 
 [dependencies]
 # leave off "bundled" this time to see what that does.
 rusqlite = { version = "0.34.0" }
-
-[lib]
-name = "db"
-path = "db/src/lib.rs"
