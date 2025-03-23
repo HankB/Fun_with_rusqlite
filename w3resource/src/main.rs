@@ -14,6 +14,21 @@ fn main() -> Result<()> {
 
     // Query configs
     println!("Configs in database:");
+    println!("Configs in database:");
+    let mut result = Vec::with_capacity(1000);
+    db::query_config(&mut result)?;
+
+    for conf in result {
+        println!("id: {}, MAC: {}, config {}", conf.id, conf.MAC, conf.config);
+    }
+
+    let mut result = Vec::with_capacity(1000);
+    db::query_config(&mut result)?;
+    for conf in result {
+        println!("id: {}, MAC: {}, config {}", conf.id, conf.MAC, conf.config);
+    }
+
+    /*
     db::query_config()?;
 
     // Update a config
@@ -23,6 +38,6 @@ fn main() -> Result<()> {
     // Delete a config
     db::delete_config(2)?;
     db::query_config()?;
+    */
     Ok(())
 }
-

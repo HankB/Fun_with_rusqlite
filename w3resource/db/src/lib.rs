@@ -4,10 +4,10 @@ use rusqlite::{params, Connection, Result}; // For database operations and resul
 
 // Define a struct to map query results
 #[derive(Debug, Clone)]
-struct Conf {
-    id: i32,
-    MAC: String,
-    config: String,
+pub struct Conf {
+    pub id: i32,
+    pub MAC: String,
+    pub config: String,
 }
 
 pub fn create_database() -> Result<()> {
@@ -41,10 +41,11 @@ pub fn insert_config(MAC: &str, config: &str) -> Result<()> {
     Ok(())
 }
 
-pub fn query_config() -> Result<()> {
+pub fn query_config(res: &mut Vec<Conf>) -> Result<()> {
     let conn = Connection::open("config.db")?;
 
-    // Retrieve data from configs table
+
+// Retrieve data from configs table
     let mut stmt = conn.prepare("SELECT id, MAC, config FROM ESP_config")?;
     let conf_iter = stmt.query_map([], |row| {
         Ok(Conf {
@@ -54,19 +55,32 @@ pub fn query_config() -> Result<()> {
         })
     })?;
 
-    // Iterate over the retrieved rows
+
+// Iterate over the retrieved rows
     for conf in conf_iter {
-        //println!("{:?}", conf?.clone());
-        //let id = conf.unwrap().id;
-        //let MAC = conf.unwrap().MAC;
-        let Conf { id, MAC, config: conf } = conf?;
-        //println!("id:{}, MAC:{}, ", id, MAC)
+
+//println!("{:?}", conf?.clone());
+
+//let id = conf.unwrap().id;
+
+//let MAC = conf.unwrap().MAC;
+        let Conf {
+            id,
+            MAC,
+            config: conf,
+        } = conf?;
+
+//println!("id:{}, MAC:{}, ", id, MAC)
         println!("id:{} MAC:{} config:{}", id, MAC, conf);
+        res.push(Conf {
+            id,
+            MAC,
+            config: conf,
+        });
     }
 
     Ok(())
 }
-
 pub fn update_config(id: i32, new_config: &str) -> Result<()> {
     let conn = Connection::open("config.db")?;
 
