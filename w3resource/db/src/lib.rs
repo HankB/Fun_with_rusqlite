@@ -58,20 +58,12 @@ pub fn query_config(res: &mut Vec<Conf>) -> Result<()> {
 
 // Iterate over the retrieved rows
     for conf in conf_iter {
-
-//println!("{:?}", conf?.clone());
-
-//let id = conf.unwrap().id;
-
-//let MAC = conf.unwrap().MAC;
         let Conf {
             id,
             MAC,
             config: conf,
         } = conf?;
 
-//println!("id:{}, MAC:{}, ", id, MAC)
-        println!("id:{} MAC:{} config:{}", id, MAC, conf);
         res.push(Conf {
             id,
             MAC,
