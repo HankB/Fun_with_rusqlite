@@ -41,13 +41,13 @@ pub fn insert_config(MAC: &str, config: &str) -> Result<()> {
     Ok(())
 }
 
-pub fn query_config(res: &mut Vec<Conf>) -> Result<()> {
+pub fn query_config(res: &mut Vec<Conf>, device_mac: &str) -> Result<()> {
     let conn = Connection::open("config.db")?;
 
 
 // Retrieve data from configs table
-    let mut stmt = conn.prepare("SELECT id, MAC, config FROM ESP_config")?;
-    let conf_iter = stmt.query_map([], |row| {
+    let mut stmt = conn.prepare("SELECT id, MAC, config FROM ESP_config where MAC like ?")?;
+    let conf_iter = stmt.query_map([device_mac], |row| {
         Ok(Conf {
             id: row.get(0)?,
             MAC: row.get(1)?,

@@ -1,5 +1,9 @@
 # w3resource Comprehensive Guide to SQLite integration in Rust
 
+## Status
+
+* 2025-03-23 Complete for what I want the DB access to do.
+
 <https://www.w3resource.com/sqlite/snippets/rust-sqlite.php>
 
 Looks interesting and worth working through. Not including the "bundled" feature results in:
@@ -40,4 +44,8 @@ Next is to modify this to match my needs/plans. I deleted the `id` field and now
 
 And what I want. The key for unpacking the structure is in <https://doc.rust-lang.org/rust-by-example/custom_types/structs.html?search=non_snake_case> (search for "Destructure the point using a `let` binding".) Eureka!
 
-Now... Can I return a collection of `struct Conf` from a function that queries the database? I hope so.
+Now... Can I return a collection of `struct Conf` from a function that queries the database? I hope so. Yes, solution kindly provided by Redditor /u/forfd688 at <https://old.reddit.com/r/learnrust/comments/1jhijkn/how_can_i_fix_this_to_provide_access_to_a/?> The solution is to pass an empty Vec<> in which `query_config()` can store results.
+
+## Done, almost
+
+I also need to provide a way to query the database for specific MAC addresses. That's done and working.
